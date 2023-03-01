@@ -1,5 +1,5 @@
 """
-functions taken from "https://github.com/tensorflow/docs/blob/master/site/en/tutorials/audio/music_generation.ipynb"
+some functions are taken from "https://github.com/tensorflow/docs/blob/master/site/en/tutorials/audio/music_generation.ipynb"
 """
 
 import collections
