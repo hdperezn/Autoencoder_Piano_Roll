@@ -15,7 +15,7 @@ from IPython import display
 from matplotlib import pyplot as plt
 from typing import Dict, List, Optional, Sequence, Tuple
 
-def display_audio(pm: pretty_midi.PrettyMIDI, seconds=60):
+def display_audio(pm: pretty_midi.PrettyMIDI, _SAMPLING_RATE, seconds=60):
   waveform = pm.fluidsynth(fs=_SAMPLING_RATE)
   # Take a sample of the generated waveform to mitigate kernel resets
   waveform_short = waveform[:seconds*_SAMPLING_RATE]
