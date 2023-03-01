@@ -1,3 +1,7 @@
+"""
+functions taken from "https://github.com/tensorflow/docs/blob/master/site/en/tutorials/audio/music_generation.ipynb"
+"""
+
 import collections
 import fluidsynth
 import glob
@@ -52,3 +56,46 @@ def plot_piano_roll(notes: pd.DataFrame, count: Optional[int] = None):
   plt.xlabel('Time [s]')
   plt.ylabel('Pitch')
   _ = plt.title(title)
+
+
+def plot_distributions(notes: pd.DataFrame, drop_percentile=2.5):
+  plt.figure(figsize=[15, 5])
+  plt.subplot(1, 3, 1)
+  sns.histplot(notes, x="pitch", bins=20)
+
+  plt.subplot(1, 3, 2)
+  max_step = np.percentile(notes['step'], 100 - drop_percentile)
+  sns.histplot(notes, x="step", bins=np.linspace(0, max_step, 21))
+
+  plt.subplot(1, 3, 3)
+  max_duration = np.percentile(notes['duration'], 100 - drop_percentile)
+  sns.histplot(notes, x="duration", bins=np.linspace(0, max_duration, 21))
+
+def notes_to_midi(
+  notes: pd.DataFrame,
+  out_file: str,
+  instrument_name: str,
+  velocity: int = 100,  # note loudness
+) -> pretty_midi.PrettyMIDI:
+
+  pm = pretty_midi.PrettyMIDI()
+  instrument = pretty_midi.Instrument(
+      program=pretty_midi.instrument_name_to_program(
+          instrument_name))
+
+  prev_start = 0
+  for i, note in notes.iterrows():
+    start = float(prev_start + note['step'])
+    end = float(start + note['duration'])
+    note = pretty_midi.Note(
+        velocity=velocity,
+        pitch=int(note['pitch']),
+        start=start,
+        end=end,
+    )
+    instrument.notes.append(note)
+    prev_start = start
+
+  pm.instruments.append(instrument)
+  pm.write(out_file)
+  return pm
