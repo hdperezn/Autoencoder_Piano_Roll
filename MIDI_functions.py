@@ -153,3 +153,15 @@ def piano_roll_to_pretty_midi(piano_roll, fs=100, program=0):
             prev_velocities[note] = 0
     pm.instruments.append(instrument)
     return pm
+  
+def cut_midi_secTrial(X, wind=10):
+  """
+  X: piano roll array
+  N_windows: N° of seconds
+  """
+  Xtrial = []
+  step = int(X.shape[1]/wind)
+  for i in range(wind):
+    XX = X[:,int(i*step):(i+1)*step]
+    Xtrial.append(XX)
+  return np.asarray(Xtrial)
