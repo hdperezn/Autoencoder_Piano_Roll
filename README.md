@@ -1,4 +1,4 @@
-# MIDI_functions
+# Unet-Like for Piano Roll 
 some important functions to process MIDI in order to use them in Deep learning Aplication
 
 
