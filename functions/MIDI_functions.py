@@ -1,5 +1,7 @@
 """
 some functions are taken from "https://github.com/tensorflow/docs/blob/master/site/en/tutorials/audio/music_generation.ipynb"
+
+Copyright 2021 The TensorFlow Authors.
 """
 
 import collections
