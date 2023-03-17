@@ -1,6 +1,7 @@
 # Unet-Like for Piano Roll 
-some important functions to process MIDI in order to use them in Deep learning Aplication
-
+this repository contains:
+* some important functions to process MIDI in order to use them in Deep learning Aplication.
+* a neural network called "Unet-Like for Piano Roll" designed to rebuild piano roll arrays and generate a Mask with the "hits" of the input set
 
 # Dependencies
 
