@@ -48,7 +48,7 @@ _SAMPLING_RATE = 16000
 fProll = 20
 ```
 
-The "get_piano_roll" function from the Pretty_MIDI library was used to generate 
+The "get_piano_roll" function from the [Pretty_MIDI](https://craffel.github.io/pretty-midi/) library was used to generate 
 the piano roll representation, then every one-minute sample was cut into 10 segments, 
 and the pitch data was cut under the 88 notes. Finally, some samples were deleted
 because the original audio stimuli were shorter than 60 seconds
@@ -104,3 +104,11 @@ UNet_pianoroll.model.summary()
 ```
 
 You can run a demonstrative notebook in the UNetLike_pianorolls.ipyn
+
+# bibliography 
+
+* Colin Raffel and Daniel P. W. Ellis. Intuitive Analysis, Creation and Manipulation of MIDI Data with pretty_midi. In 15th International Conference on Music Information Retrieval Late Breaking and Demo Papers, 2014.
+* KOELSTRA, Sander, et al. Deap: A database for emotion analysis; using physiological signals. IEEE transactions on affective computing, 2011, vol. 3, no 1, p. 18-31.
+* “Image Segmentation with a U-Net-like Architecture”. Keras.Io, https://keras.io/examples/vision/oxford_pets_image_segmentation/. Consultado el 17 de marzo de 2023.
+* RONNEBERGER, Olaf; FISCHER, Philipp; BROX, Thomas. U-net: Convolutional networks for biomedical image segmentation. En Medical Image Computing and Computer-Assisted Intervention–MICCAI 2015: 18th International Conference, Munich, Germany, October 5-9, 2015, Proceedings, Part III 18. Springer International Publishing, 2015. p. 234-241.
+* 
