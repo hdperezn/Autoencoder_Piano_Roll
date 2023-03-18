@@ -171,7 +171,7 @@ class Autoencoder_Pianoroll(BaseEstimator, ClassifierMixin):
     self.l1_l2 = l1_l2
 
   def Encoder(self, img_size ):
-    self.encoder_inputs = keras.Input(shape=(img_size))
+    self.encoder_inputs = tf.keras.Input(shape=(img_size))
     ### [First half of the network: downsampling inputs] ###
     filters = self.filters_list[::-1]
 
@@ -208,7 +208,7 @@ class Autoencoder_Pianoroll(BaseEstimator, ClassifierMixin):
     
 
   def Decoder(self, num_classes):
-    input_x = keras.Input(shape=(self.x.shape[1::]))
+    input_x = tf.keras.Input(shape=(self.x.shape[1::]))
     x = input_x
     previous_block_activation = x
 
@@ -243,7 +243,7 @@ class Autoencoder_Pianoroll(BaseEstimator, ClassifierMixin):
     seed = 123
     tf.random.set_seed(seed)
     np.random.seed(seed)
-    keras.backend.clear_session()
+    tf.keras.backend.clear_session()
 
     self.winitializer = tf.keras.initializers.GlorotNormal(seed=seed)
     self.binitializer = "zeros"
