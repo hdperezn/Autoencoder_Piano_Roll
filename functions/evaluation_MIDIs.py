@@ -557,3 +557,50 @@ class metrics(object):
         else:
             print ("invalid normalization mode, return unnormalized matrix")
             return transition_matrix
+        
+######### To calculate the metrics ############
+
+def metrics_calculation(evalset, set1, set2):
+  if not any(set1):
+    print("Error: sample set it empty")
+    exit()
+
+  if not any(set2):
+    print("Error: baseline set it empty")
+    exit()
+
+  num_samples = min(len(set2), len(set1))
+
+  bar_metrics = [ 'bar_used_pitch', 'bar_used_note', 'bar_pitch_class_histogram' ]
+  metrics_list = evalset.keys()
+
+  single_arg_metrics = ([ 'total_used_pitch', 'avg_IOI', 'total_pitch_class_histogram', 'pitch_range'])
+
+  set1_eval = copy.deepcopy(evalset)
+  set2_eval = copy.deepcopy(evalset)
+
+  sets = [ (set1, set1_eval), (set2, set2_eval) ]
+
+  for _set, _set_eval in sets:
+    for i in range(0, num_samples):
+        feature = extract_feature(_set[i])
+        for metric in metrics_list:
+            if metric in single_arg_metrics:
+                evaluator = getattr(metrics(), metric)
+                tmp = evaluator(feature)
+            elif metric in bar_metrics:
+                # print(metric)
+                evaluator = getattr(metrics(), metric)
+                tmp = evaluator(feature, 0, args.num_bar)
+                # print(tmp.shape)
+            else:
+                evaluator = getattr(metrics(), metric)
+                tmp = evaluator(feature, 0)
+            _set_eval[metric][i] = tmp
+
+  if np.isnan(set1_eval['avg_IOI']).sum() != 0:
+    print('############## el sujeto: ', sub+1, ', tiene valores nulos en arousal')
+  elif np.isnan(set2_eval['avg_IOI']).sum() != 0:
+    print('############## el sujeto: ', sub+1, ', tiene valores nulos en valance')
+
+  return set1_eval, set2_eval
