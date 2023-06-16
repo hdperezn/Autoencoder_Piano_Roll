@@ -10,6 +10,7 @@ import sys
 import pretty_midi
 import glob
 import math
+import numpy as np
 
 
 # feature extractor
