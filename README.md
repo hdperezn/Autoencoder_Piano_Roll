@@ -36,8 +36,8 @@ training dataset.
 
 
 ```python
-from MIDI_functions.functions.MIDI_functions import cut_midi_secTrial
-from MIDI_functions.functions.UNetLike_PianoRolls import UNet_Pianoroll
+from Autoencoder_Piano_Roll.functions.MIDI_functions import cut_midi_secTrial
+from Autoencoder_Piano_Roll.functions.UNetLike_PianoRolls import UNet_Pianoroll
 ```
 
 # Creating training Piano roll data set
