@@ -8,6 +8,8 @@ this repository contains:
 *   fluidsynth
 *   pyfluidsynth
 *   pretty_midi
+*   scipy
+*   sklearn
 ```python
 !sudo apt install -y fluidsynth
 !pip install --upgrade pyfluidsynth
