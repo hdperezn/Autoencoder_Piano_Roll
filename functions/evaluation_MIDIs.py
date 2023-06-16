@@ -6,6 +6,7 @@ https://github.com/RichardYang40148/mgeval/tree/master
 """
 
 import sys
+import copy
 #import midi
 import pretty_midi
 import glob
