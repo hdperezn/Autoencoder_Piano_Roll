@@ -7,6 +7,7 @@ https://github.com/RichardYang40148/mgeval/tree/master
 
 import sys
 #import midi
+import pretty_midi
 import glob
 import math
 
